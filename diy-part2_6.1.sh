@@ -103,7 +103,7 @@ echo "# CONFIG_PACKAGE_kmod-usb-audio is not set" >> ./.config
 echo "# CONFIG_PACKAGE_kmod-media-core is not set" >> ./.config
 
 # 修改vermagic版本号
-# curl -fsSL https://raw.githubusercontent.com/ywt114/diy/main/vermagic-6.1 > vermagic
+# curl -fsSL https://raw.githubusercontent.com/zhbjzhql/diy/main/vermagic-6.1 > vermagic
 # sed -i 's/grep '\''=\[ym\]'\'' $(LINUX_DIR)\/.config.set | LC_ALL=C sort | $(MKHASH) md5 >/cp $(TOPDIR)\/vermagic/g' include/kernel-defaults.mk
 # sed -i 's/$(SCRIPT_DIR)\/kconfig.pl $(LINUX_DIR)\/.config | $(MKHASH) md5/cat $(LINUX_DIR)\/.vermagic/g' package/kernel/linux/Makefile
 
