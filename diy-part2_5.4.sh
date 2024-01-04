@@ -109,11 +109,11 @@ sed -i '/CONFIG_PACKAGE_wpad-openssl/d' ./.config
 # sed -i 's/grep '\''=\[ym\]'\'' $(LINUX_DIR)\/.config.set | LC_ALL=C sort | $(MKHASH) md5 >/cp $(TOPDIR)\/vermagic/g' include/kernel-defaults.mk
 # sed -i 's/$(SCRIPT_DIR)\/kconfig.pl $(LINUX_DIR)\/.config | $(MKHASH) md5/cat $(LINUX_DIR)\/.vermagic/g' package/kernel/linux/Makefile
 
-sed -i 's/Variable1 = "*.*"/Variable1 = "ywt114"/g' package/lean/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
+sed -i 's/Variable1 = "*.*"/Variable1 = "zhbjzhql"/g' package/lean/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt"/g' package/lean/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/lean/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "5.4"/g' package/lean/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
-sed -i 's/Variable1 = "*.*"/Variable1 = "ywt114"/g' package/lean/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
+sed -i 's/Variable1 = "*.*"/Variable1 = "zhbjzhql"/g' package/lean/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt"/g' package/lean/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/lean/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "5.4"/g' package/lean/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
