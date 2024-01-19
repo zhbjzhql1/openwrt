@@ -3,7 +3,7 @@ name: Update Checker
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 18 * * 4'
+    - cron: '1 1 1 * 1/1'
 #  watch:
 #    types: started
 
