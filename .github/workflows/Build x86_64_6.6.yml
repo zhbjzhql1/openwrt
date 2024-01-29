@@ -1,4 +1,4 @@
-name: Build x86_64_5.4
+name: Build x86_64_6.6
 
 on:
   repository_dispatch:
@@ -14,7 +14,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: x86_64.config
   DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2_5.4.sh
+  DIY_P2_SH: diy-part2_6.6.sh
   REVERT_COMMIT: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -32,7 +32,7 @@ jobs:
         target:
           - arch: "x86_64"
             target: "x86"
-            kernel: "5.4"
+            kernel: "6.6"
 
     steps:
     - name: 检查
@@ -56,7 +56,7 @@ jobs:
         sudo -E rm -rf "$AGENT_TOOLSDIRECTORY" || true
         sudo -E apt -yqq update
         sudo -E apt -yqq full-upgrade
-        sudo -E apt -yqq install $(curl -fsSL https://raw.githubusercontent.com/zhbjzhql1/diy/main/depends) || true
+        sudo -E apt -yqq install $(curl -fsSL https://raw.githubusercontent.com/ywt114/diy/main/depends) || true
         sudo -E apt -yqq autoremove --purge
         sudo -E apt -yqq autoclean
         sudo -E systemctl daemon-reload
@@ -90,8 +90,8 @@ jobs:
     - name: 执行回滚
       if: env.REVERT_COMMIT == 'true' && !cancelled()
       run: |
-        cd $(curl -fsSL https://raw.githubusercontent.com/zhbjzhql1/diy/main/directory)
-        git reset --hard $(curl -fsSL https://raw.githubusercontent.com/zhbjzhql1/diy/main/commit)
+        cd $(curl -fsSL https://raw.githubusercontent.com/ywt114/diy/main/directory)
+        git reset --hard $(curl -fsSL https://raw.githubusercontent.com/ywt114/diy/main/commit)
 
     - name: 安装 feeds
       working-directory: ./openwrt

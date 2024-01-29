@@ -1,5 +1,30 @@
 # 文件名: diy-part2.sh
 # 描述: OpenWrt DIY script part 2 (放在安装feeds之后)
+#!/bin/bash
+
+function merge_package() {
+    # 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
+    # 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+    if [[ $# -lt 3 ]]; then
+    	echo "Syntax error: [$#] [$*]" >&2
+        return 1
+    fi
+    trap 'rm -rf "$tmpdir"' EXIT
+    branch="$1" curl="$2" target_dir="$3" && shift 3
+    rootdir="$PWD"
+    localdir="$target_dir"
+    [ -d "$localdir" ] || mkdir -p "$localdir"
+    tmpdir="$(mktemp -d)" || exit 1
+    git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
+    git sparse-checkout init --cone
+    git sparse-checkout set "$@"
+    # 使用循环逐个移动文件夹
+    for folder in "$@"; do
+        mv -f "$folder" "$rootdir/$localdir"
+    done
+    cd "$rootdir"
+}
 
 # 修改管理地址
 sed -i 's/192.168.1.1/192.168.1.1/g' package/base-files/files/bin/config_generate
@@ -98,9 +123,9 @@ git clone -b master https://github.com/linkease/nas-packages package/lean/nas-pa
 \rm -rf package/lean/nas-packages
 
 # 取消部分config配置
-sed -i '/CONFIG_PACKAGE_kmod-usb-audio/d' ./.config
-echo "# CONFIG_PACKAGE_kmod-usb-audio is not set" >> ./.config
-echo "# CONFIG_PACKAGE_kmod-media-core is not set" >> ./.config
+# sed -i '/CONFIG_PACKAGE_kmod-usb-audio/d' ./.config
+# echo "# CONFIG_PACKAGE_kmod-usb-audio is not set" >> ./.config
+# echo "# CONFIG_PACKAGE_kmod-media-core is not set" >> ./.config
 
 # 修改vermagic版本号
 # curl -fsSL https://raw.githubusercontent.com/zhbjzhql1/diy/main/vermagic-6.1 > vermagic
